@@ -1,0 +1,47 @@
+/* You can add global styles to this file, and also import other style files */
+.loader {
+  border: 1px solid #f3f3f3;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+  border-top: 1px solid #555;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  vertical-align: middle;
+  float: right;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.fav-image-size {
+  min-width: 128px;
+  min-height: 128px;
+  max-height: 128px;
+  max-width: 128px;
+}
+
+.padBottom20px{
+  padding-bottom: 20px;
+}
+
+.col {
+  flex-grow: 0!important;
+}

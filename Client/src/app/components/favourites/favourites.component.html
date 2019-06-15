@@ -1,0 +1,58 @@
+<div class="col-md-12 jumbotron ">
+  <ngb-tabset justify="start" (tabChange)="changeTab($event)" #tabs>
+    <ngb-tab title="Search Flicker">
+      <ng-template ngbTabContent>
+        <div class="bd-center">
+          <ng-template #rt let-r="result" let-t="term">
+            <div class="col-xs-12">
+              <span><img [src]="r.media['m']" class="img-fluid rounded" style="width: 32px; height: 32px"/></span>&nbsp;&nbsp;
+              <span *ngIf="!hasFavouriteId(r.link);then set_content else remove_content"></span>
+              <ng-template #set_content>
+                <a class="btn btn-warning btn-sm" (click)="markAsFavourite(r.link, r.media['m'])">Mark as Favourite</a>&nbsp;&nbsp;
+              </ng-template>
+              <ng-template #remove_content>
+                <a class="btn btn-danger btn-sm" (click)="removeFavourite(getFavouriteId(r.link))">Unfavourite</a>&nbsp;&nbsp;
+              </ng-template>
+              <span><a [href]="r.media['m']" class="btn btn-secondary btn-sm"
+                       target="_blank">View Full image </a> </span>
+            </div>
+            <div class="col-xs-12 small">
+              <span><b>Title:</b> {{r.title}} </span> <br/>
+              <span><b>Author:</b> {{r.author}} </span> <br/>
+              <span><b>Tags:</b> {{r.tags}} </span>
+            </div>
+            <div class="dropdown-divider"></div>
+          </ng-template>
+          <br/>
+          <br/>
+          <label for="flickerSearch">Search for a flicker post:</label>
+          <input id="flickerSearch" type="text" class="form-control"
+                 [(ngModel)]="model"
+                 [ngbTypeahead]="search"
+                 [resultTemplate]="rt"
+                 (selectItem)="keepOpen($event)"
+                 [inputFormatter]="formatter"/>
+          <span *ngIf="searching">searching...</span>
+          <div class="invalid-feedback" *ngIf="searchFailed">Sorry, suggestions could not be loaded.</div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab title="My Favourites" id="myFav">
+      <ng-template ngbTabContent>
+        <div class="bd-center">
+          <br/> <br/>
+          <div class="row text-center text-lg-left">
+            <div class="col padBottom20px" *ngFor="let fav of this.favourites">
+              <a [href]="fav.image" target="_blank">
+                <img class="img-thumbnail rounded fav-image-size" [src]="fav.image" alt="">
+              </a>
+              <div class="padBottom20px text-center ">
+                <button class="btn btn-warning btn-sm text-right" (click)="removeFavourite(fav.id)">Unfavourite</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div>

@@ -1,0 +1,1 @@
+dotnet-fm migrate -c "server=(localdb)\mssqllocaldb;initial catalog=PoC;integrated security=True;" -a  bin\Debug\netcoreapp2.1\PoC.DbMigrator.dll --processor SqlServer

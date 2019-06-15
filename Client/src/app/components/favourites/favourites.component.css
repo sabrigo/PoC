@@ -1,0 +1,9 @@
+.bd-center {
+  position: relative;
+  border: solid #f7f7f9 .2rem;
+  padding: 1.5rem;
+}
+
+li.border-less {
+  border-top: 0 none;
+}
